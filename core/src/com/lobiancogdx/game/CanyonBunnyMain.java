@@ -5,6 +5,7 @@ package com.lobiancogdx.game;
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.GL20;
 
 public class CanyonBunnyMain implements ApplicationListener
@@ -20,6 +21,9 @@ public class CanyonBunnyMain implements ApplicationListener
 	{
 		//Set Libgdx log level to DEBUG
 		Gdx.app.setLogLevel(Application.LOG_DEBUG);
+		
+		//Load assets
+		Assets.instance.init(new AssetManager());
 		
 		//Initialize controller and renderer
 		worldController = new WorldController();
@@ -65,6 +69,7 @@ public class CanyonBunnyMain implements ApplicationListener
 	@Override
 	public void resume()
 	{
+		Assets.instance.init(new AssetManager());
 		paused = false;
 	}
 	
@@ -72,5 +77,6 @@ public class CanyonBunnyMain implements ApplicationListener
 	public void dispose()
 	{
 		worldRenderer.dispose();
+		Assets.instance.dispose();
 	}
 }
