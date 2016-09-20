@@ -28,10 +28,10 @@ public class DesktopLauncher
 			settings.maxHeight = 1024;
 			settings.duplicatePadding = false;
 			settings.debug = drawDebugOutline;
-			TexturePacker.process(settings, "assets-raw/images", "../core/assets-raw/images", "canyonbunny");
+			TexturePacker.process(settings, "assets-raw/justanotherescape", "../core/assets-raw/justanotherescape", "justanotherescape");
 		}
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-		config.title = "CanyonBunny";
+		config.title = "JustAnotherEscape";
 		config.width = 800;
 		config.height = 480;
 		

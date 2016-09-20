@@ -41,8 +41,8 @@ public class WorldController extends InputAdapter
 		
 		//Create a list of texture regoins
 		Array<TextureRegion> regions = new Array<TextureRegion>();
-		regions.add(Assets.instance.bunny.head);
-		regions.add(Assets.instance.feather.feather);
+		regions.add(Assets.instance.thief.thief);
+		regions.add(Assets.instance.clock.clock);
 		regions.add(Assets.instance.goldCoin.goldCoin);
 		
 		//Create empty POT-sized Pixmap with 8 bit RGBA pixel data

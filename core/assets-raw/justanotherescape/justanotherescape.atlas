@@ -1,0 +1,76 @@
+
+justanotherescape.png
+size: 1024,256
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+crate
+  rotate: false
+  xy: 2, 108
+  size: 130, 132
+  orig: 130, 132
+  offset: 0, 0
+  index: -1
+floor
+  rotate: false
+  xy: 134, 108
+  size: 130, 132
+  orig: 130, 132
+  offset: 0, 0
+  index: -1
+gray_background
+  rotate: false
+  xy: 266, 108
+  size: 130, 132
+  orig: 130, 132
+  offset: 0, 0
+  index: -1
+item_clock
+  rotate: false
+  xy: 398, 108
+  size: 130, 132
+  orig: 130, 132
+  offset: 0, 0
+  index: -1
+item_gold_coin
+  rotate: false
+  xy: 662, 184
+  size: 56, 56
+  orig: 56, 56
+  offset: 0, 0
+  index: -1
+spike
+  rotate: false
+  xy: 2, 2
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+thief
+  rotate: false
+  xy: 2, 36
+  size: 70, 70
+  orig: 70, 70
+  offset: 0, 0
+  index: -1
+white_background
+  rotate: false
+  xy: 530, 108
+  size: 130, 132
+  orig: 130, 132
+  offset: 0, 0
+  index: -1
+window_closed
+  rotate: false
+  xy: 74, 74
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+window_open
+  rotate: false
+  xy: 662, 150
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1

@@ -23,10 +23,10 @@ public class Assets implements Disposable, AssetErrorListener
 		
 	}
 	
-	public AssetBunny bunny;
-	public AssetRock rock;
+	public AssetThief thief;
+	public AssetFloor floor;
 	public AssetGoldCoin goldCoin;
-	public AssetFeather feather;
+	public AssetClock clock;
 	public AssetLevelDecoration levelDecoration;
 	/**
 	 * set asset manager error handler, load texture atlas, then 
@@ -54,10 +54,10 @@ public class Assets implements Disposable, AssetErrorListener
 			t.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		}
 		
-		bunny = new AssetBunny(atlas);
-		rock = new AssetRock(atlas);
+		thief = new AssetThief(atlas);
+		floor = new AssetFloor(atlas);
 		goldCoin = new AssetGoldCoin(atlas);
-		feather = new AssetFeather(atlas);
+		clock = new AssetClock(atlas);
 		levelDecoration = new AssetLevelDecoration(atlas);
 	}
 	
@@ -91,30 +91,28 @@ public class Assets implements Disposable, AssetErrorListener
 	}
 	
 	/**
-	 * Inner class of the bunny image to help group assets.
+	 * Inner class of the thief image to help group assets.
 	 */
-	public class AssetBunny
+	public class AssetThief
 	{
-		public final AtlasRegion head;
+		public final AtlasRegion thief;
 		
-		public AssetBunny(TextureAtlas atlas)
+		public AssetThief(TextureAtlas atlas)
 		{
-			head = atlas.findRegion("bunny_head");
+			thief = atlas.findRegion("thief");
 		}
 	}
 	
 	/**
-	 * Inner class of the rock images to help group assets.
+	 * Inner class of the floor image to help group assets.
 	 */
-	public class AssetRock
+	public class AssetFloor
 	{
-		public final AtlasRegion edge;
-		public final AtlasRegion middle;
+		public final AtlasRegion floor;
 		
-		public AssetRock(TextureAtlas atlas)
+		public AssetFloor(TextureAtlas atlas)
 		{
-			edge = atlas.findRegion("rock_edge");
-			middle = atlas.findRegion("rock_middle");
+			floor = atlas.findRegion("floor");
 		}
 	}
 	
@@ -132,15 +130,15 @@ public class Assets implements Disposable, AssetErrorListener
 	}
 	
 	/**
-	 * Inner class of the feather image to help group assets.
+	 * Inner class of the clock image to help group assets.
 	 */
-	public class AssetFeather
+	public class AssetClock
 	{
-		public final AtlasRegion feather;
+		public final AtlasRegion clock;
 		
-		public AssetFeather(TextureAtlas atlas)
+		public AssetClock(TextureAtlas atlas)
 		{
-			feather = atlas.findRegion("item_feather");
+			clock = atlas.findRegion("item_clock");
 		}
 	}
 	
@@ -149,21 +147,21 @@ public class Assets implements Disposable, AssetErrorListener
 	 */
 	public class AssetLevelDecoration
 	{
-		public final AtlasRegion cloud01;
-		public final AtlasRegion cloud02;
-		public final AtlasRegion cloud03;
-		public final AtlasRegion mountainLeft;
-		public final AtlasRegion mountainRight;
-		public final AtlasRegion waterOverlay;
+		public final AtlasRegion background01;
+		public final AtlasRegion background02;
+		public final AtlasRegion crate;
+		public final AtlasRegion windowClosed;
+		public final AtlasRegion windowOpen;
+		public final AtlasRegion spike;
 		
 		public AssetLevelDecoration(TextureAtlas atlas)
 		{
-			cloud01 = atlas.findRegion("cloud01");
-			cloud02 = atlas.findRegion("cloud02");
-			cloud03 = atlas.findRegion("cloud03");
-			mountainLeft = atlas.findRegion("mountain_left");
-			mountainRight = atlas.findRegion("mountain_right");
-			waterOverlay = atlas.findRegion("water_overlay");
+			background01 = atlas.findRegion("white_background");
+			background02 = atlas.findRegion("gray_background");
+			crate = atlas.findRegion("crate");
+			windowClosed = atlas.findRegion("window_closed");
+			windowOpen = atlas.findRegion("window_open");
+			spike = atlas.findRegion("spike");
 		}
 	}
 }
