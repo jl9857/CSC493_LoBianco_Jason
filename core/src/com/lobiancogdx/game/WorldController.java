@@ -7,8 +7,6 @@ import com.badlogic.gdx.Application.ApplicationType;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputAdapter;
-import com.badlogic.gdx.graphics.Pixmap;
-import com.badlogic.gdx.graphics.Pixmap.Format;
 
 public class WorldController extends InputAdapter
 {
@@ -35,25 +33,6 @@ public class WorldController extends InputAdapter
 	{
 		score = 0;
 		level = new Level(Constants.LEVEL_01);
-	}
-	
-	private Pixmap createProceduralPixmap(int width, int height)
-	{
-		Pixmap pixmap = new Pixmap(width, height, Format.RGBA8888);
-		
-		//Fill square with red color at 50% opacity
-		pixmap.setColor(1, 0, 0, 0.5f);
-		pixmap.fill();
-		
-		//Draw a yellow-colored X shape on square
-		pixmap.setColor(1, 1, 0, 1);
-		pixmap.drawLine(0, 0, width, height);
-		pixmap.drawLine(width, 0, 0, height);
-		
-		//Draw a cyan-colored border around square
-		pixmap.setColor(0, 1, 1, 1);
-		pixmap.drawRectangle(0, 0, width, height);
-		return pixmap;
 	}
 	
 	public void update(float deltaTime)
