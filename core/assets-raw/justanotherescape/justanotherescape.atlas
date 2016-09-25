@@ -6,70 +6,70 @@ filter: Nearest,Nearest
 repeat: none
 crate
   rotate: false
-  xy: 2, 108
+  xy: 2, 119
   size: 130, 132
   orig: 130, 132
   offset: 0, 0
   index: -1
 floor
   rotate: false
-  xy: 134, 108
-  size: 130, 132
-  orig: 130, 132
+  xy: 2, 94
+  size: 130, 23
+  orig: 130, 23
   offset: 0, 0
   index: -1
 gray_background
   rotate: false
-  xy: 266, 108
+  xy: 134, 119
   size: 130, 132
   orig: 130, 132
   offset: 0, 0
   index: -1
 item_clock
   rotate: false
-  xy: 398, 108
+  xy: 266, 119
   size: 130, 132
   orig: 130, 132
   offset: 0, 0
   index: -1
 item_gold_coin
   rotate: false
-  xy: 662, 184
+  xy: 2, 36
   size: 56, 56
   orig: 56, 56
   offset: 0, 0
   index: -1
 spike
   rotate: false
-  xy: 2, 2
+  xy: 530, 147
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 thief
   rotate: false
-  xy: 2, 36
+  xy: 530, 181
   size: 70, 70
   orig: 70, 70
   offset: 0, 0
   index: -1
 white_background
   rotate: false
-  xy: 530, 108
+  xy: 398, 119
   size: 130, 132
   orig: 130, 132
   offset: 0, 0
   index: -1
 window_closed
   rotate: false
-  xy: 74, 74
+  xy: 602, 219
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 window_open
   rotate: false
-  xy: 662, 150
+  xy: 2, 2
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
