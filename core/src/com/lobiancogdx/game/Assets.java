@@ -6,6 +6,7 @@ import com.badlogic.gdx.assets.AssetErrorListener;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
 import com.badlogic.gdx.utils.Disposable;
@@ -16,6 +17,7 @@ public class Assets implements Disposable, AssetErrorListener
 	public static final Assets instance = new Assets();
 	
 	private AssetManager assetManager;
+	public AssetFonts fonts;
 	
 	//singleton: prevent instantiation from other classes
 	private Assets()
@@ -49,11 +51,14 @@ public class Assets implements Disposable, AssetErrorListener
 		
 		TextureAtlas atlas = assetManager.get(Constants.TEXTURE_ATLAS_OBJECTS);
 		
+		//enable texture filtering for pixel smoothing
 		for(Texture t : atlas.getTextures())
 		{
 			t.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		}
 		
+		//create game resource objects
+		fonts = new AssetFonts();
 		bunny = new AssetBunny(atlas);
 		rock = new AssetRock(atlas);
 		goldCoin = new AssetGoldCoin(atlas);
@@ -68,6 +73,9 @@ public class Assets implements Disposable, AssetErrorListener
 	public void dispose()
 	{
 		assetManager.dispose();
+		fonts.defaultSmall.dispose();
+		fonts.defaultNormal.dispose();
+		fonts.defaultBig.dispose();
 	}
 	
 	/**
@@ -164,6 +172,31 @@ public class Assets implements Disposable, AssetErrorListener
 			mountainLeft = atlas.findRegion("mountain_left");
 			mountainRight = atlas.findRegion("mountain_right");
 			waterOverlay = atlas.findRegion("water_overlay");
+		}
+	}
+	
+	public class AssetFonts
+	{
+		public final BitmapFont defaultSmall;
+		public final BitmapFont defaultNormal;
+		public final BitmapFont defaultBig;
+		
+		public AssetFonts()
+		{
+			//create three fonts using Libgdx's 15px bitmap font
+			defaultSmall = new BitmapFont(Gdx.files.internal("/lobianco-gdx-game-desktop/assets-raw/images/arial-15.fnt"), true);
+			defaultNormal = new BitmapFont(Gdx.files.internal("images/arial-15.fnt"), true);
+			defaultBig = new BitmapFont(Gdx.files.internal("images/arial-15.fnt"), true);
+			
+			//set font sizes
+			defaultSmall.getData().setScale(0.75f);
+			defaultNormal.getData().setScale(1.0f);
+			defaultBig.getData().setScale(2.0f);
+			
+			//enable linear texture filtering for smooth fonts
+			defaultSmall.getRegion().getTexture().setFilter(TextureFilter.Linear, TextureFilter.Linear);
+			defaultNormal.getRegion().getTexture().setFilter(TextureFilter.Linear, TextureFilter.Linear);
+			defaultBig.getRegion().getTexture().setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		}
 	}
 }
