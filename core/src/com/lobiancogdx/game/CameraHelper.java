@@ -8,7 +8,6 @@ import com.badlogic.gdx.math.Vector2;
 /**
  * 
  * @author Jason LoBianco
- *
  */
 
 public class CameraHelper 
@@ -20,67 +19,116 @@ public class CameraHelper
 	
 	private Vector2 position;
 	private float zoom;
-	private Sprite target;
+	private AbstractGameObject target;
 	
+	/**
+	 * init the camera helper
+	 */
 	public CameraHelper()
 	{
 		position = new Vector2();
 		zoom = 1.0f;
 	}
 	
+	/**
+	 * update the position of the camera
+	 * @param deltaTime
+	 */
 	public void update(float deltaTime)
 	{
 		if (!hasTarget()) return;
 		
-		position.x = target.getX() + target.getOriginX();
-		position.y = target.getY() + target.getOriginY();
+		position.x = target.position.x + target.origin.x;
+		position.y = target.position.y + target.origin.y;
 	}
 	
+	/**
+	 * set position of the camera
+	 * @param x
+	 * @param y
+	 */
 	public void setPosition(float x, float y)
 	{
 		this.position.set(x,y);
 	}
 	
+	/**
+	 * returns the position of the camera
+	 * @return
+	 */
 	public Vector2 getPosition()
 	{
 		return position;
 	}
 	
+	/**
+	 * zooms in the camera
+	 * @param amount
+	 */
 	public void addZoom(float amount)
 	{
 		setZoom(zoom + amount);
 	}
 	
+	/**
+	 * sets camera zoom
+	 * @param zoom
+	 */
 	public void setZoom(float zoom)
 	{
 		this.zoom = MathUtils.clamp(zoom, MAX_ZOOM_IN, MAX_ZOOM_OUT);
 	}
 	
+	/**
+	 * returns the camera zoom
+	 * @return
+	 */
 	public float getZoom()
 	{
 		return zoom;
 	}
 	
-	public void setTarget(Sprite target)
+	/**
+	 * set the target of the camera
+	 * @param target
+	 */
+	public void setTarget(AbstractGameObject target)
 	{
 		this.target = target;
 	}
 	
-	public Sprite getTarget()
+	/**
+	 * returns the target of the camera
+	 * @return
+	 */
+	public AbstractGameObject getTarget()
 	{
 		return target;
 	}
 	
+	/**
+	 * checks to see if the camera has a target
+	 * @return
+	 */
 	public boolean hasTarget()
 	{
 		return target != null;
 	}
 	
-	public boolean hasTarget(Sprite target)
+	/**
+	 * checks to see if the camera has a target
+	 * @param target
+	 * @return
+	 */
+	public boolean hasTarget(AbstractGameObject target)
 	{
 		return hasTarget() && this.target.equals(target);
 	}
 	
+	/**
+	 * apply the updates to the camera
+	 * @param camera
+	 */
 	public void applyTo(OrthographicCamera camera)
 	{
 		camera.position.x = position.x;
