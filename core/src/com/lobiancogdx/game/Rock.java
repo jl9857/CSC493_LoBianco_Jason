@@ -1,5 +1,7 @@
 package com.lobiancogdx.game;
 /**
+ * The rock class is responsible for creating and maintaining the 
+ * rocks in the game.
  * @author Jason LoBianco
  */
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -12,6 +14,10 @@ public class Rock extends AbstractGameObject
 	
 	private int length;
 	
+	/**
+	 * Constructor that calls the init() method to set up the
+	 * rock asset.
+	 */
 	public Rock()
 	{
 		init();
@@ -38,6 +44,9 @@ public class Rock extends AbstractGameObject
 	public void setLength(int length)
 	{
 		this.length = length;
+		
+		//Update bounding box for collision detection
+		bounds.set(0, 0, dimension.x * length, dimension.y);
 	}
 	
 	/**
