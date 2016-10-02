@@ -1,7 +1,6 @@
 package com.lobiancogdx.game;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 
@@ -40,6 +39,9 @@ public class CameraHelper
 		
 		position.x = target.position.x + target.origin.x;
 		position.y = target.position.y + target.origin.y;
+		
+		//Prevent camera from moving down too far
+		position.y = Math.max(-1f, position.y);
 	}
 	
 	/**

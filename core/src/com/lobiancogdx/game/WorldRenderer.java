@@ -171,12 +171,57 @@ public class WorldRenderer implements Disposable
 		//draw collected gold coins icon + text
 		//(anchored to top left edge)
 		renderGuiScore(batch);
+		//draw collected feather icon (anchored to top left edge)
+		renderGuiClockPowerup(batch);
 		//draw extra lives icon + text (anchored to top right edge)
 		renderGuiExtraLive(batch);
 		//draw FPS text (anchored to bottom right edge)
 		renderGuiFpsCounter(batch);
 		//draw Timer text (anchored to bottom left edge)
 		renderGuiTimer(batch);
+		//draw game over text
+		renderGuiGameOverMessage(batch);
+				
 		batch.end();
+	}
+	
+	/**
+	 * draws the game over message if you lose.
+	 * @param batch
+	 */
+	private void renderGuiGameOverMessage(SpriteBatch batch)
+	{
+		float x = cameraGUI.viewportWidth / 2;
+		float y = cameraGUI.viewportHeight / 2;
+		if(worldController.isGameOver())
+		{
+			BitmapFont fontGameOver = Assets.instance.fonts.defaultBig;
+			fontGameOver.setColor(1, 0.75f, 0.25f, 1);
+			fontGameOver.draw(batch, "GAME OVER", x, y);
+			fontGameOver.setColor(1, 1, 1, 1);
+		}
+	}
+	
+	private void renderGuiClockPowerup(SpriteBatch batch)
+	{
+		float x = -15;
+		float y = 30;
+		float timeLeftClockPowerup = worldController.level.thief.timeLeftClockPowerup;
+		if(timeLeftClockPowerup > 0)
+		{
+			//Start icon fade in/out if the left power-up time
+			//is less than 4 seconds.  The fade interval is set
+			//to 5 changes per second.
+			if(timeLeftClockPowerup < 4)
+			{
+				if(((int) (timeLeftClockPowerup * 5) % 2) != 0)
+				{
+					batch.setColor(1, 1, 1, 0.5f);
+				}
+			}
+			batch.draw(Assets.instance.clock.clock, x, y, 50, 50, 100, 100, 0.35f, -0.35f, 0);
+			batch.setColor(1, 1, 1, 1);
+			Assets.instance.fonts.defaultSmall.draw(batch, "" + (int)timeLeftClockPowerup, x + 60, y + 57);
+		}
 	}
 }

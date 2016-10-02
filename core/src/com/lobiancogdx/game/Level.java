@@ -29,11 +29,20 @@ public class Level
 			color = r << 24 | g << 16 | b << 8 | 0xff;
 		}
 		
+		/**
+		 * checks to see if a pixel is the same color
+		 * @param color
+		 * @return
+		 */
 		public boolean sameColor(int color)
 		{
 			return this.color == color;
 		}
 		
+		/**
+		 * returns the color of a pixel
+		 * @return
+		 */
 		public int getColor()
 		{
 			return color;
@@ -48,6 +57,10 @@ public class Level
 	public Crates crates;
 	public Backgrounds backgrounds;
 	public Spike spike;
+	
+	public Thief thief;
+	public Array<GoldCoin> goldCoins;
+	public Array<Clock> clocks;
 	
 	/**
 	 * Constructor to call init() method.
@@ -64,8 +77,13 @@ public class Level
 	 */
 	private void init(String filename)
 	{
+		//player character
+		thief = null;
+		
 		//objects
 		floor = new Array<Floor>();
+		goldCoins = new Array<GoldCoin>();
+		clocks = new Array<Clock>();
 		
 		//load image file that represents the level data
 		Pixmap pixmap = new Pixmap(Gdx.files.internal(filename));
@@ -112,17 +130,26 @@ public class Level
 				//player spawn point
 				else if(BLOCK_TYPE.PLAYER_SPAWNPOINT.sameColor(currentPixel))
 				{
-					
+					obj = new Thief();
+					offsetHeight = -3.0f;
+					obj.position.set(pixelX, baseHeight * obj.dimension.y + offsetHeight);
+					thief = (Thief)obj;
 				}
-				//feather
+				//clock
 				else if(BLOCK_TYPE.ITEM_CLOCK.sameColor(currentPixel))
 				{
-					
+					obj = new Clock();
+					offsetHeight = -1.5f;
+					obj.position.set(pixelX, baseHeight * obj.dimension.y + offsetHeight);
+					clocks.add((Clock)obj);
 				}
 				//gold coin
 				else if(BLOCK_TYPE.ITEM_GOLD_COIN.sameColor(currentPixel))
 				{
-					
+					obj = new GoldCoin();
+					offsetHeight = -1.5f;
+					obj.position.set(pixelX, baseHeight * obj.dimension.y + offsetHeight);
+					goldCoins.add((GoldCoin)obj);
 				}
 				//unknown object/pixel color
 				else 
@@ -167,6 +194,21 @@ public class Level
 			floor.render(batch);
 		}
 		
+		//Draw Gold Coins
+		for(GoldCoin goldCoin : goldCoins)
+		{
+			goldCoin.render(batch);
+		}
+				
+		//Draw Clocks
+		for(Clock clock : clocks)
+		{
+			clock.render(batch);
+		}
+				
+		//Draw Player Character
+		thief.render(batch);
+		
 		//Draw Spikes
 		spike.render(batch);
 		
@@ -175,5 +217,33 @@ public class Level
 		
 		//Draw Crates
 		crates.render(batch);
+	}
+	
+	/**
+	 * updates all of the game objects of the game.
+	 * @param deltaTime
+	 */
+	public void update(float deltaTime)
+	{
+		thief.update(deltaTime);
+		
+		for(Floor floor : floor)
+		{
+			floor.update(deltaTime);
+		}
+		
+		for(GoldCoin goldCoin : goldCoins)
+		{
+			goldCoin.update(deltaTime);
+		}
+		
+		for(Clock clock : clocks)
+		{
+			clock.update(deltaTime);
+		}
+		
+		windows.update(deltaTime);
+		
+		crates.update(deltaTime);
 	}
 }
