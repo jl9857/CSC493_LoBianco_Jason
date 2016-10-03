@@ -1,35 +1,62 @@
 
 justanotherescape.png
-size: 1024,256
+size: 1024,1024
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
+gray_background
+  rotate: false
+  xy: 2, 504
+  size: 1000, 500
+  orig: 1000, 500
+  offset: 0, 0
+  index: -1
+white_background
+  rotate: false
+  xy: 2, 2
+  size: 1000, 500
+  orig: 1000, 500
+  offset: 0, 0
+  index: -1
+
+justanotherescape2.png
+size: 512,512
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+arial-15
+  rotate: false
+  xy: 90, 322
+  size: 256, 128
+  orig: 256, 128
+  offset: 0, 0
+  index: -1
 crate
   rotate: false
-  xy: 2, 119
-  size: 130, 132
-  orig: 130, 132
+  xy: 90, 140
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+default
+  rotate: false
+  xy: 90, 192
+  size: 256, 128
+  orig: 256, 128
   offset: 0, 0
   index: -1
 floor
   rotate: false
   xy: 2, 94
-  size: 130, 23
-  orig: 130, 23
-  offset: 0, 0
-  index: -1
-gray_background
-  rotate: false
-  xy: 134, 119
-  size: 130, 132
-  orig: 130, 132
+  size: 86, 356
+  orig: 86, 356
   offset: 0, 0
   index: -1
 item_clock
   rotate: false
-  xy: 266, 119
-  size: 130, 132
-  orig: 130, 132
+  xy: 450, 410
+  size: 46, 40
+  orig: 46, 40
   offset: 0, 0
   index: -1
 item_gold_coin
@@ -41,35 +68,28 @@ item_gold_coin
   index: -1
 spike
   rotate: false
-  xy: 530, 147
+  xy: 2, 2
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 thief
   rotate: false
-  xy: 530, 181
-  size: 70, 70
-  orig: 70, 70
-  offset: 0, 0
-  index: -1
-white_background
-  rotate: false
-  xy: 398, 119
-  size: 130, 132
-  orig: 130, 132
+  xy: 348, 375
+  size: 100, 75
+  orig: 100, 75
   offset: 0, 0
   index: -1
 window_closed
   rotate: false
-  xy: 602, 219
-  size: 32, 32
-  orig: 32, 32
+  xy: 348, 323
+  size: 50, 50
+  orig: 50, 50
   offset: 0, 0
   index: -1
 window_open
   rotate: false
-  xy: 2, 2
+  xy: 90, 106
   size: 32, 32
   orig: 32, 32
   offset: 0, 0

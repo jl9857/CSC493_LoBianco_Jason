@@ -266,10 +266,18 @@ public class WorldController extends InputAdapter
 			if(Gdx.input.isKeyPressed(Keys.LEFT))
 			{
 				level.thief.velocity.x = -level.thief.terminalVelocity.x;
+				if(level.thief.hasClockPowerup())
+				{
+					level.thief.velocity.x = (-level.thief.terminalVelocity.x * 2);
+				}
 			}
 			else if(Gdx.input.isKeyPressed(Keys.RIGHT))
 			{
 				level.thief.velocity.x = level.thief.terminalVelocity.x;
+				if(level.thief.hasClockPowerup())
+				{
+					level.thief.velocity.x = (level.thief.terminalVelocity.x * 2);
+				}
 			}
 			else
 			{
