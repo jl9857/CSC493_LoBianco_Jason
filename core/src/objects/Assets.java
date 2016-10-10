@@ -1,4 +1,4 @@
-package com.lobiancogdx.game;
+package objects;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetDescriptor;
@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
 import com.badlogic.gdx.utils.Disposable;
+import com.lobiancogdx.game.Constants;
 
 public class Assets implements Disposable, AssetErrorListener
 {

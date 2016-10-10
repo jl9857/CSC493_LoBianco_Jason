@@ -1,4 +1,4 @@
-package com.lobiancogdx.game;
+package objects;
 /**
  * 
  * @author Jason LoBianco

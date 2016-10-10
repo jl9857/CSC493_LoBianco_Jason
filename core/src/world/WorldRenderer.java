@@ -1,7 +1,10 @@
-package com.lobiancogdx.game;
+package world;
 /**
  * @author Jason LoBianco
  */
+
+import objects.Assets;
+import screens.GamePreferences;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -9,6 +12,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Disposable;
+import com.lobiancogdx.game.Constants;
 
 public class WorldRenderer implements Disposable 
 {
@@ -127,7 +131,10 @@ public class WorldRenderer implements Disposable
 		//draw extra lives icon + text (anchored to top right edge)
 		renderGuiExtraLive(batch);
 		//draw FPS text (anchored to bottom right edge)
-		renderGuiFpsCounter(batch);
+		if(GamePreferences.instance.showFpsCounter)
+		{
+			renderGuiFpsCounter(batch);
+		}
 		//draw game over text
 		renderGuiGameOverMessage(batch);
 		

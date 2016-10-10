@@ -1,4 +1,6 @@
-package com.lobiancogdx.game;
+package world;
+
+import objects.AbstractGameObject;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.MathUtils;

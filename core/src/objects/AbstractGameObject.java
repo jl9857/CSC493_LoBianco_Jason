@@ -1,4 +1,4 @@
-package com.lobiancogdx.game;
+package objects;
 /**
  * The AbstractGameObject class is used to give its children all the 
  * values and methods a game object will need.

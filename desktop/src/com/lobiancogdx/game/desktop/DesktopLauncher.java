@@ -29,6 +29,7 @@ public class DesktopLauncher
 			settings.duplicatePadding = false;
 			settings.debug = drawDebugOutline;
 			TexturePacker.process(settings, "assets-raw/images", "../core/assets-raw/images", "canyonbunny");
+			TexturePacker.process(settings, "assets-raw/images-ui", "../core/assets-raw/images-ui", "canyonbunny-ui");
 		}
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		config.title = "CanyonBunny";

@@ -1,4 +1,4 @@
-package com.lobiancogdx.game;
+package objects;
 /**
  * The rock class is responsible for creating and maintaining the 
  * rocks in the game.

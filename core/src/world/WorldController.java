@@ -1,14 +1,22 @@
-package com.lobiancogdx.game;
+package world;
 /**
  * @author Jason LoBianco
  */
 
+import objects.BunnyHead;
+import objects.Feather;
+import objects.GoldCoin;
+import objects.Rock;
+import objects.BunnyHead.JUMP_STATE;
+import screens.MenuScreen;
+
 import com.badlogic.gdx.Application.ApplicationType;
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.math.Rectangle;
-import com.lobiancogdx.game.BunnyHead.JUMP_STATE;
+import com.lobiancogdx.game.Constants;
 
 public class WorldController extends InputAdapter
 {
@@ -18,13 +26,15 @@ public class WorldController extends InputAdapter
 	public int lives;
 	public int score;
 	private float timeLeftGameOverDelay;
+	private Game game;
 	
 	//Rectangles for collision detection
 	private Rectangle r1 = new Rectangle();
 	private Rectangle r2 = new Rectangle();
 	
-	public WorldController()
+	public WorldController(Game game)
 	{
+		this.game = game;
 		init();
 	}
 	
@@ -50,7 +60,7 @@ public class WorldController extends InputAdapter
 		if(isGameOver())
 		{
 			timeLeftGameOverDelay -= deltaTime;
-			if(timeLeftGameOverDelay < 0) init();
+			if(timeLeftGameOverDelay < 0) backToMenu();
 		}
 		else
 		{
@@ -121,6 +131,12 @@ public class WorldController extends InputAdapter
 		{
 			cameraHelper.setTarget(cameraHelper.hasTarget() ? null : level.bunnyHead);
 			Gdx.app.debug(TAG, "Camera follow enabled: " + cameraHelper.hasTarget());
+		}
+		
+		//Back to Menu
+		else if(keycode == Keys.ESCAPE || keycode == Keys.BACK)
+		{
+			backToMenu();
 		}
 		return false;
 	}
@@ -245,13 +261,30 @@ public class WorldController extends InputAdapter
 		}
 	}
 	
+	/**
+	 * checks if the game is over
+	 * @return
+	 */
 	public boolean isGameOver()
 	{
 		return lives < 0;
 	}
 	
+	/**
+	 * checks if the player is in the water
+	 * @return
+	 */
 	public boolean isPlayerInWater()
 	{
 		return level.bunnyHead.position.y < -5;
+	}
+	
+	/**
+	 * switches back to the menu screen.
+	 */
+	private void backToMenu()
+	{
+		//switch to menu screen
+		game.setScreen(new MenuScreen(game));
 	}
 }

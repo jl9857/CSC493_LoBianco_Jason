@@ -1,4 +1,4 @@
-package com.lobiancogdx.game;
+package objects;
 /**
  * The Feather class is responsible for creating and maintaining
  * Feathers in the game.

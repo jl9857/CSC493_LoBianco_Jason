@@ -1,4 +1,13 @@
-package com.lobiancogdx.game;
+package world;
+
+import objects.AbstractGameObject;
+import objects.BunnyHead;
+import objects.Clouds;
+import objects.Feather;
+import objects.GoldCoin;
+import objects.Mountains;
+import objects.Rock;
+import objects.WaterOverlay;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Pixmap;

@@ -1,4 +1,4 @@
-package com.lobiancogdx.game;
+package objects;
 /**
  * The GoldCoin class is responsible for creating and maintaining
  * GoldCoins in the game.
