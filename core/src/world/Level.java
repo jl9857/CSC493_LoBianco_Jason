@@ -1,4 +1,14 @@
-package com.lobiancogdx.game;
+package world;
+
+import objects.AbstractGameObject;
+import objects.Backgrounds;
+import objects.Clock;
+import objects.Crates;
+import objects.Floor;
+import objects.GoldCoin;
+import objects.Spike;
+import objects.Thief;
+import objects.Windows;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Pixmap;

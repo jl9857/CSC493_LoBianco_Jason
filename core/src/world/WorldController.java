@@ -1,16 +1,24 @@
-package com.lobiancogdx.game;
+package world;
 /**
  * The WOrldController is responsible for updating all the game
  * objects in the world.
  * @author Jason LoBianco
  */
 
+import objects.Clock;
+import objects.Floor;
+import objects.GoldCoin;
+import objects.Thief;
+import objects.Thief.JUMP_STATE;
+import screen.MenuScreen;
+
 import com.badlogic.gdx.Application.ApplicationType;
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.math.Rectangle;
-import com.lobiancogdx.game.Thief.JUMP_STATE;
+import com.lobiancogdx.game.Constants;
 
 public class WorldController extends InputAdapter
 {
@@ -20,6 +28,7 @@ public class WorldController extends InputAdapter
 	public int lives;
 	public int score;
 	private float timeLeftGameOverDelay;
+	private Game game;
 	
 	//Rectangles for collision detection
 	private Rectangle r1 = new Rectangle();
@@ -28,8 +37,9 @@ public class WorldController extends InputAdapter
 	/**
 	 * Constructor that calls the init() method to init the level.
 	 */
-	public WorldController()
+	public WorldController(Game game)
 	{
+		this.game = game;
 		init();
 	}
 	
@@ -149,6 +159,12 @@ public class WorldController extends InputAdapter
 		{
 			cameraHelper.setTarget(cameraHelper.hasTarget() ? null : level.thief);
 			Gdx.app.debug(TAG, "Camera follow enabled: " + cameraHelper.hasTarget());
+		}
+		
+		//Back to Menu
+		else if(keycode == Keys.ESCAPE || keycode == Keys.BACK)
+		{
+			backToMenu();
 		}
 		return false;
 	}
@@ -316,5 +332,14 @@ public class WorldController extends InputAdapter
 	public boolean isPlayerInSpikes()
 	{
 		return level.thief.position.y < -5;
+	}
+	
+	/**
+	 * switches back to the menu screen.
+	 */
+	private void backToMenu()
+	{
+		//switch to menu screen
+		game.setScreen(new MenuScreen(game));
 	}
 }

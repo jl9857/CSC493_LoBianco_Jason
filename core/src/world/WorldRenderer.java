@@ -1,16 +1,19 @@
-package com.lobiancogdx.game;
+package world;
 /**
  * The WorldRender is responsible for redrawing the game objects
  * any time they are updated by the WorldController.
  * @author Jason LoBianco
  */
 
+import objects.Assets;
+import screen.GamePreferences;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Disposable;
+import com.lobiancogdx.game.Constants;
 
 public class WorldRenderer implements Disposable 
 {
@@ -176,7 +179,10 @@ public class WorldRenderer implements Disposable
 		//draw extra lives icon + text (anchored to top right edge)
 		renderGuiExtraLive(batch);
 		//draw FPS text (anchored to bottom right edge)
-		renderGuiFpsCounter(batch);
+		if(GamePreferences.instance.showFpsCounter)
+		{
+			renderGuiFpsCounter(batch);
+		}
 		//draw Timer text (anchored to bottom left edge)
 		renderGuiTimer(batch);
 		//draw game over text

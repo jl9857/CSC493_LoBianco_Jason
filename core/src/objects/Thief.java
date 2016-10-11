@@ -1,7 +1,11 @@
-package com.lobiancogdx.game;
+package objects;
+
+import screen.GamePreferences;
+import screen.CharacterSkin;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.lobiancogdx.game.Constants;
 
 /**
  * The Thief class is responsible for creating and maintaining the 
@@ -209,6 +213,9 @@ public class Thief extends AbstractGameObject
 	public void render(SpriteBatch batch)
 	{
 		TextureRegion reg = null;
+		
+		//Apply Skin Color
+		batch.setColor(CharacterSkin.values()[GamePreferences.instance.charSkin].getColor());
 		
 		//Set special color when game object has a clock power-up
 		if(hasClockPowerup)

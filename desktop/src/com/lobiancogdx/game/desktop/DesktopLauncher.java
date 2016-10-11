@@ -11,7 +11,7 @@ import com.lobiancogdx.game.CanyonBunnyMain;
 
 public class DesktopLauncher 
 {
-	private static boolean rebuildAtlas = false;
+	private static boolean rebuildAtlas = true;
 	private static boolean drawDebugOutline = true;
 	
 	/**
@@ -29,6 +29,7 @@ public class DesktopLauncher
 			settings.duplicatePadding = false;
 			settings.debug = drawDebugOutline;
 			TexturePacker.process(settings, "assets-raw/justanotherescape", "../core/assets-raw/justanotherescape", "justanotherescape");
+			TexturePacker.process(settings, "assets-raw/images-ui", "../core/assets-raw/images-ui", "justanotherescape-ui");
 		}
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		config.title = "JustAnotherEscape";
