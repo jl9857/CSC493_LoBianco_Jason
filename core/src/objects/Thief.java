@@ -3,6 +3,8 @@ package objects;
 import screen.GamePreferences;
 import screen.CharacterSkin;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.lobiancogdx.game.Constants;
@@ -16,6 +18,7 @@ import com.lobiancogdx.game.Constants;
 public class Thief extends AbstractGameObject
 {
 	public static final String TAG = Thief.class.getName();
+	public ParticleEffect dustParticles = new ParticleEffect();
 	
 	private final float JUMP_TIME_MAX = 0.6f;
 	private final float JUMP_TIME_MIN = 0.2f;
@@ -81,6 +84,10 @@ public class Thief extends AbstractGameObject
 		//Power-ups
 		hasClockPowerup = false;
 		timeLeftClockPowerup = 0;
+		
+		//Particles
+		dustParticles.load(Gdx.files.internal("assets-raw/particles/dust.pfx"), 
+				Gdx.files.internal("assets-raw/particles"));
 	}
 	
 	/**
@@ -202,6 +209,7 @@ public class Thief extends AbstractGameObject
 		}
 		if(jumpState != JUMP_STATE.GROUNDED)
 		{
+			dustParticles.allowCompletion();
 			super.updateMotionY(deltaTime);
 		}
 	}
@@ -213,6 +221,9 @@ public class Thief extends AbstractGameObject
 	public void render(SpriteBatch batch)
 	{
 		TextureRegion reg = null;
+		
+		//Draw Particles
+		dustParticles.draw(batch);
 		
 		//Apply Skin Color
 		batch.setColor(CharacterSkin.values()[GamePreferences.instance.charSkin].getColor());

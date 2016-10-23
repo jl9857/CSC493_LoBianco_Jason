@@ -29,6 +29,7 @@ public class WorldController extends InputAdapter
 	public int score;
 	private float timeLeftGameOverDelay;
 	private Game game;
+	public float scoreVisual;
 	
 	//Rectangles for collision detection
 	private Rectangle r1 = new Rectangle();
@@ -62,6 +63,7 @@ public class WorldController extends InputAdapter
 	private void initLevel()
 	{
 		score = 0;
+		scoreVisual = score;
 		level = new Level(Constants.LEVEL_01);
 		cameraHelper.setTarget(level.thief);
 	}
@@ -96,6 +98,11 @@ public class WorldController extends InputAdapter
 			{
 				initLevel();
 			}
+		}
+		
+		if(scoreVisual < score)
+		{
+			scoreVisual = Math.min(scoreVisual,  scoreVisual + 250 * deltaTime);
 		}
 	}
 	
