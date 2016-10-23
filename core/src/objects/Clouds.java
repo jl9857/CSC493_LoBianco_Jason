@@ -1,5 +1,6 @@
 package objects;
 /**
+ * The clouds class is responsible for drawing and updating all of the clouds in the world.
  * @author Jason LoBianco
  */
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -15,20 +16,34 @@ public class Clouds extends AbstractGameObject
 	private Array<TextureRegion> regClouds;
 	private Array<Cloud> clouds;
 	
+	/**
+	 * The cloud class is used to made a single instance of a cloud
+	 * @author Jason LoBianco
+	 */
 	private class Cloud extends AbstractGameObject
 	{
 		private TextureRegion regCloud;
 		
+		/**
+		 * empty constructor
+		 */
 		public Cloud()
 		{
 			
 		}
 		
+		/**
+		 * sets cloud region
+		 * @param region
+		 */
 		public void setRegion(TextureRegion region)
 		{
 			regCloud = region;
 		}
 		
+		/**
+		 * draws a cloud
+		 */
 		@Override
 		public void render(SpriteBatch batch)
 		{
@@ -40,12 +55,19 @@ public class Clouds extends AbstractGameObject
 		}
 	}
 	
+	/**
+	 * constructor that calls init method
+	 * @param length
+	 */
 	public Clouds(float length)
 	{
 		this.length = length;
 		init();
 	}
 	
+	/**
+	 * init all the clouds into the clouds array
+	 */
 	private void init()
 	{
 		dimension.set(3.0f, 1.5f);
@@ -65,6 +87,9 @@ public class Clouds extends AbstractGameObject
 		}
 	}
 	
+	/**
+	 * @return the cloud to be spawned
+	 */
 	private Cloud spawnCloud()
 	{
 		Cloud cloud = new Cloud();
@@ -77,9 +102,40 @@ public class Clouds extends AbstractGameObject
 		pos.y += 1.75;
 		pos.y += MathUtils.random(0.0f, 0.2f) * (MathUtils.randomBoolean() ? 1 : -1);
 		cloud.position.set(pos);
+		//speed
+		Vector2 speed = new Vector2();
+		speed.x += 0.5f;	//base speed
+		//random additional speed
+		speed.x += MathUtils.random(0.0f, 0.75f);
+		cloud.terminalVelocity.set(speed);
+		speed.x *= -1;		//move left
+		cloud.velocity.set(speed);
 		return cloud;
 	}
 	
+	/**
+	 * updates the position of all the clouds
+	 */
+	@Override
+	public void update(float deltaTime)
+	{
+		for(int i = clouds.size - 1; i>= 0; i--)
+		{
+			Cloud cloud = clouds.get(i);
+			cloud.update(deltaTime);
+			if(cloud.position.x < -10)
+			{
+				//cloud moved outside of world.
+				//destroy and spawn new cloud at end of level.
+				clouds.removeIndex(i);
+				clouds.add(spawnCloud());
+			}
+		}
+	}
+	
+	/**
+	 * draws all of the clouds
+	 */
 	@Override
 	public void render(SpriteBatch batch)
 	{
