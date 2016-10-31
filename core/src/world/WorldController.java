@@ -5,6 +5,8 @@ package world;
  * @author Jason LoBianco
  */
 
+import objects.Assets;
+import objects.AudioManager;
 import objects.Clock;
 import objects.Floor;
 import objects.GoldCoin;
@@ -89,6 +91,7 @@ public class WorldController extends InputAdapter
 		cameraHelper.update(deltaTime);
 		if(!isGameOver() && isPlayerInSpikes())
 		{
+			AudioManager.instance.play(Assets.instance.sounds.liveLost);
 			lives--;
 			if(isGameOver())
 			{
@@ -222,6 +225,7 @@ public class WorldController extends InputAdapter
 	private void onCollisionThiefWithGoldCoin(GoldCoin goldcoin)
 	{
 		goldcoin.collected = true;
+		AudioManager.instance.play(Assets.instance.sounds.pickupCoin);
 		score += goldcoin.getScore();
 		Gdx.app.log(TAG, "Gold coin collected");
 	}
@@ -233,6 +237,7 @@ public class WorldController extends InputAdapter
 	private void onCollisionThiefWithClock(Clock clock)
 	{
 		clock.collected = true;
+		AudioManager.instance.play(Assets.instance.sounds.pickupClock);
 		score += clock.getScore();
 		level.thief.setClockPowerup(true);
 		Gdx.app.log(TAG, "Clock collectd");
