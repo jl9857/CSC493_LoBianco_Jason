@@ -3,6 +3,8 @@ package world;
  * @author Jason LoBianco
  */
 
+import objects.Assets;
+import objects.AudioManager;
 import objects.BunnyHead;
 import objects.Feather;
 import objects.GoldCoin;
@@ -75,6 +77,7 @@ public class WorldController extends InputAdapter
 		cameraHelper.update(deltaTime);
 		if(!isGameOver() && isPlayerInWater())
 		{
+			AudioManager.instance.play(Assets.instance.sounds.liveLost);
 			lives--;
 			if(isGameOver())
 			{
@@ -193,6 +196,7 @@ public class WorldController extends InputAdapter
 	private void onCollisionBunnyWithGoldCoin(GoldCoin goldcoin)
 	{
 		goldcoin.collected = true;
+		AudioManager.instance.play(Assets.instance.sounds.pickupCoin);
 		score += goldcoin.getScore();
 		Gdx.app.log(TAG, "Gold coin collected");
 	}
@@ -200,6 +204,7 @@ public class WorldController extends InputAdapter
 	private void onCollisionBunnyWithFeather(Feather feather)
 	{
 		feather.collected = true;
+		AudioManager.instance.play(Assets.instance.sounds.pickupFeather);
 		score += feather.getScore();
 		level.bunnyHead.setFeatherPowerup(true);
 		Gdx.app.log(TAG, "Feather collectd");

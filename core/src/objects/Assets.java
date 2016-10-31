@@ -4,6 +4,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetDescriptor;
 import com.badlogic.gdx.assets.AssetErrorListener;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -31,6 +33,9 @@ public class Assets implements Disposable, AssetErrorListener
 	public AssetGoldCoin goldCoin;
 	public AssetFeather feather;
 	public AssetLevelDecoration levelDecoration;
+	public AssetSounds sounds; 
+	public AssetMusic music;
+	
 	/**
 	 * set asset manager error handler, load texture atlas, then 
 	 * start loading assets and wait until finished, enable
@@ -43,6 +48,15 @@ public class Assets implements Disposable, AssetErrorListener
 		this.assetManager = assetManager;
 		assetManager.setErrorListener(this);
 		assetManager.load(Constants.TEXTURE_ATLAS_OBJECTS, TextureAtlas.class);
+		// load sounds  
+		assetManager.load("assets-raw/sounds/jump.wav", Sound.class);  
+		assetManager.load("assets-raw/sounds/jump_with_feather.wav", Sound.class);  
+		assetManager.load("assets-raw/sounds/pickup_coin.wav", Sound.class);  
+		assetManager.load("assets-raw/sounds/pickup_feather.wav", Sound.class);  
+		assetManager.load("assets-raw/sounds/live_lost.wav", Sound.class);  
+		// load music  
+		assetManager.load("assets-raw/music/keith303_-_brand_new_highscore.mp3",  Music.class);
+		// start loading assets and wait until finished
 		assetManager.finishLoading();
 		Gdx.app.debug(TAG, "# of assets loaded: " + assetManager.getAssetNames().size);
 		for(String a : assetManager.getAssetNames())
@@ -65,6 +79,8 @@ public class Assets implements Disposable, AssetErrorListener
 		goldCoin = new AssetGoldCoin(atlas);
 		feather = new AssetFeather(atlas);
 		levelDecoration = new AssetLevelDecoration(atlas);
+		sounds = new AssetSounds(assetManager);  
+		music = new AssetMusic(assetManager);
 	}
 	
 	/**
@@ -199,5 +215,49 @@ public class Assets implements Disposable, AssetErrorListener
 			defaultNormal.getRegion().getTexture().setFilter(TextureFilter.Linear, TextureFilter.Linear);
 			defaultBig.getRegion().getTexture().setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		}
+	}
+	
+	/**
+	 * Inner class for loading all of the sounds.
+	 * @author Jason LoBianco
+	 */
+	public class AssetSounds 
+	{  
+		public final Sound jump;  
+		public final Sound jumpWithFeather;  
+		public final Sound pickupCoin;  
+		public final Sound pickupFeather;  
+		public final Sound liveLost;
+		
+		/**
+		 * Sets all of the sounds variables to the correct sound file.
+		 * @param am
+		 */
+		public AssetSounds (AssetManager am) 
+		{    
+			jump = am.get("assets-raw/sounds/jump.wav", Sound.class);
+		    jumpWithFeather = am.get("assets-raw/sounds/jump_with_feather.wav",  Sound.class);
+		    pickupCoin = am.get("assets-raw/sounds/pickup_coin.wav", Sound.class);
+		    pickupFeather = am.get("assets-raw/sounds/pickup_feather.wav",  Sound.class);
+		    liveLost = am.get("assets-raw/sounds/live_lost.wav", Sound.class);
+		} 
+	}
+	
+	/**
+	 * Inner class for loading the music.
+	 * @author Jason LoBianco
+	 */
+	public class AssetMusic 
+	{  
+		public final Music song01;
+		
+		/**
+		 * loads the music into a variable.
+		 * @param am
+		 */
+		public AssetMusic (AssetManager am) 
+		{    
+			song01 = am.get("assets-raw/music/keith303_-_brand_new_highscore.mp3",  Music.class);  
+		} 
 	}
 }
