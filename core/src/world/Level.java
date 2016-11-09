@@ -2,8 +2,10 @@ package world;
 
 import objects.AbstractGameObject;
 import objects.BunnyHead;
+import objects.Carrot;
 import objects.Clouds;
 import objects.Feather;
+import objects.Goal;
 import objects.GoldCoin;
 import objects.Mountains;
 import objects.Rock;
@@ -29,7 +31,8 @@ public class Level
 		ROCK(0, 255, 0),						//green
 		PLAYER_SPAWNPOINT(255, 255, 255),		//white
 		ITEM_FEATHER(255, 0, 255),				//purple
-		ITEM_GOLD_COIN(255, 255, 0);			//yellow
+		ITEM_GOLD_COIN(255, 255, 0),			//yellow
+		GOAL(255, 0, 0);						//red
 		
 		private int color;
 		
@@ -65,10 +68,11 @@ public class Level
 	public Clouds clouds;
 	public Mountains mountains;
 	public WaterOverlay waterOverlay;
-	
 	public BunnyHead bunnyHead;
 	public Array<GoldCoin> goldCoins;
 	public Array<Feather> feathers;
+	public Array<Carrot> carrots;
+	public Goal goal;
 	
 	public Level(String filename)
 	{
@@ -84,6 +88,7 @@ public class Level
 		rocks = new Array<Rock>();
 		goldCoins = new Array<GoldCoin>();
 		feathers = new Array<Feather>();
+		carrots = new Array<Carrot>();
 		
 		//load image file that represents the level data
 		Pixmap pixmap = new Pixmap(Gdx.files.internal(filename));
@@ -151,6 +156,14 @@ public class Level
 					obj.position.set(pixelX, baseHeight * obj.dimension.y + offsetHeight);
 					goldCoins.add((GoldCoin)obj);
 				}
+				//goal
+				else if(BLOCK_TYPE.GOAL.sameColor(currentPixel))
+				{
+					obj = new Goal();
+					offsetHeight = -7.0f;
+					obj.position.set(pixelX, baseHeight + offsetHeight);
+					goal = (Goal)obj;
+				}
 				//unknown object/pixel color
 				else 
 				{
@@ -204,6 +217,12 @@ public class Level
 			feather.render(batch);
 		}
 		
+		//Draw Carrots
+		for(Carrot carrot : carrots)
+		{
+			carrot.render(batch);
+		}
+		
 		//Draw Player Character
 		bunnyHead.render(batch);
 		
@@ -232,6 +251,10 @@ public class Level
 		for(Feather feather : feathers)
 		{
 			feather.update(deltaTime);
+		}
+		for(Carrot carrot : carrots)
+		{
+			carrot.update(deltaTime);
 		}
 		clouds.update(deltaTime);
 	}
