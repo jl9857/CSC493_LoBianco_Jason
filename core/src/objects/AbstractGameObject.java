@@ -4,6 +4,7 @@ package objects;
  * values and methods a game object will need.
  * @author Jason LoBianco
  */
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
@@ -24,6 +25,9 @@ public abstract class AbstractGameObject
 	public Vector2 acceleration;
 	public Rectangle bounds;
 	public Body body;
+	
+	public float stateTime;
+	public Animation animation;
 	
 	/**
 	 * Creates an AbstractGameObject with starting values.
@@ -48,6 +52,7 @@ public abstract class AbstractGameObject
 	 */
 	public void update(float deltaTime)
 	{
+		stateTime += deltaTime;
 		if(body == null)
 		{
 			updateMotionX(deltaTime);
@@ -118,5 +123,15 @@ public abstract class AbstractGameObject
 		//Make sure the object's velocity does not exceed the
 		//positive or negative terminal velocity
 		velocity.y = MathUtils.clamp(velocity.y, -terminalVelocity.y, terminalVelocity.y);
+	}
+	
+	/**
+	 * sets an animation
+	 * @param animation
+	 */
+	public void setAnimation(Animation animation)
+	{
+		this.animation = animation;
+		stateTime = 0;
 	}
 }
